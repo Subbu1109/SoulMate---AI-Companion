@@ -95,6 +95,13 @@ pip install -r requirements.txt
 
 a. **Run Chatbot:**
 
+- First of all, install ([Ollama](https://ollama.com)) 
+
+```bash
+ollama pull gemma:2b
+```
+- Then run
+
 ```bash
 python chatbot/chat.py
 ```
