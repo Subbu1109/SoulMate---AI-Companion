@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 15, 25;
+  --background-end-rgb: 30, 30, 50;
+  
+  /* Quantum Blue Theme (Default) */
+  --primary-hue: 220;
+  --secondary-hue: 260;
+  --accent-hue: 50;
+  
+  /* Dynamic colors based on hue */
+  --primary: hsl(var(--primary-hue), 85%, 65%);
+  --secondary: hsl(var(--secondary-hue), 75%, 70%);
+  --accent: hsl(var(--accent-hue), 90%, 60%);
+  
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Emotion-based themes with smooth transitions */
+.emotion-happy {
+  --primary-hue: 45;
+  --secondary-hue: 320;
+  --accent-hue: 180;
+  --background-start-rgb: 25, 20, 15;
+  --background-end-rgb: 50, 35, 25;
+}
+
+.emotion-calm {
+  --primary-hue: 200;
+  --secondary-hue: 160;
+  --accent-hue: 280;
+  --background-start-rgb: 15, 20, 25;
+  --background-end-rgb: 25, 35, 45;
+}
+
+.emotion-sad {
+  --primary-hue: 215;
+  --secondary-hue: 45;
+  --accent-hue: 175;
+  --background-start-rgb: 15, 15, 30;
+  --background-end-rgb: 25, 25, 50;
+}
+
+.emotion-angry {
+  --primary-hue: 350;
+  --secondary-hue: 45;
+  --accent-hue: 270;
+  --background-start-rgb: 30, 15, 15;
+  --background-end-rgb: 50, 25, 25;
+}
+
+.emotion-neutral {
+  --primary-hue: 240;
+  --secondary-hue: 170;
+  --accent-hue: 30;
+  --background-start-rgb: 15, 15, 25;
+  --background-end-rgb: 30, 30, 50;
+}
+
+@layer base {
+  * {
+    @apply border-border transition-all duration-1000 ease-out;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, 
+      rgb(var(--background-start-rgb)) 0%, 
+      rgb(var(--background-end-rgb)) 100%);
+    color: rgb(var(--foreground-rgb));
+    min-height: 100vh;
+    transition: background 1s ease-out;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: linear-gradient(145deg, 
+      var(--glass-bg), 
+      rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 
+      0 8px 32px var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .glass-button {
+    @apply glass-panel px-6 py-3 cursor-pointer hover:scale-105 transition-all duration-300;
+    background: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.1)
+    );
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, 
+      var(--primary), 
+      var(--secondary)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 1s ease-out;
+  }
+  
+  .neural-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.7;
+  }
+  
+  .mood-pulse {
+    animation: mood-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes mood-pulse {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  
+  .floating-animation {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Enhanced scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Sentiment-adaptive animations */
+.emotion-happy .glass-panel {
+  box-shadow: 
+    0 8px 32px rgba(255, 182, 193, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.emotion-calm .glass-panel {
+  box-shadow: 
+    0 8px 32px rgba(173, 216, 230, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.emotion-sad .glass-panel {
+  box-shadow: 
+    0 8px 32px rgba(135, 206, 235, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.emotion-angry .glass-panel {
+  box-shadow: 
+    0 8px 32px rgba(255, 99, 71, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+  .glass-panel {
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  
+  .gradient-text {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+}

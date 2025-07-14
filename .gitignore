@@ -1,0 +1,24 @@
+# Python Virtual Environment
+venv/
+
+# Python Bytecode 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ML Model File 
+emotion_detection/emotion_model.h5
+
+# Frontend 
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/package-lock.json
+
+# Speech_text
+speech_text/*.json
+
+# System / Editor Files 
+.DS_Store
+Thumbs.db
